@@ -531,6 +531,55 @@ footer::before {
 content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
 background: linear-gradient(90deg, var(--burgundy), var(--teal), var(--yellow), var(--green));
 }
+
+/* MORE COLOR + MOBILE FIXES + ACADEMICS */
+.hero-loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) {
+  .hero-loc-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .stats-inner { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { padding: 20px 14px; }
+  .hero-chips { flex-direction: column; align-items: flex-start; }
+}
+.step-badge.sb-1 { background: var(--burgundy); }
+.step-badge.sb-2 { background: var(--teal); }
+.step-badge.sb-3 { background: var(--yellow); color: var(--text-dark); }
+.step-badge.sb-4 { background: var(--green); }
+.loc-row:nth-child(1) .loc-row-icon { background: var(--burgundy-pale); }
+.loc-row:nth-child(2) .loc-row-icon { background: var(--teal-light); }
+.loc-row:nth-child(3) .loc-row-icon { background: var(--yellow-light); }
+.form-head { background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark)); }
+/* ACADEMICS SECTION */
+.academics { background: white; }
+.academics-inner { max-width: 1200px; margin: 0 auto; }
+.academics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 44px; }
+.academic-card {
+  background: var(--gray-light); border-radius: var(--radius-lg);
+  padding: 24px 20px; border: 2px solid transparent; transition: all 0.25s;
+}
+.academic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); border-color: var(--ac-color, var(--blue)); background: white; }
+.academic-icon {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 14px;
+  background: var(--ac-bg, var(--blue-light));
+}
+.academic-name { font-size: 0.98rem; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; }
+.academic-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.65; }
+.academics-note {
+  margin-top: 32px; padding: 18px 22px; background: var(--blue-light);
+  border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-mid);
+  line-height: 1.7; border: 1.5px solid rgba(46,111,180,0.15);
+}
+.academics-note strong { color: var(--blue); }
+@media (max-width: 1024px) { .academics-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .academics-grid { grid-template-columns: 1fr; } }
+
+.section-tag.st-blue { background: var(--blue-light); color: var(--blue); }
+.section-title .accent.accent-blue { color: var(--blue); }
+
+.trust-item.ti-purple span { background: rgba(123,47,190,0.4); }
 </style>
 </head>
 <body>
@@ -541,7 +590,7 @@ background: linear-gradient(90deg, var(--burgundy), var(--teal), var(--yellow), 
 <div class="nav-links">
 <a href="#mission">About</a>
 <a href="#programs">Programs</a>
-
+<a href="#academics">Academics</a>
 <a href="#faq">FAQ</a>
 <a href="#admissions" class="nav-cta">Book a Tour</a>
 </div>
@@ -550,7 +599,7 @@ background: linear-gradient(90deg, var(--burgundy), var(--teal), var(--yellow), 
 <div class="mobile-menu" id="mobileMenu">
 <a href="#mission" onclick="closeMobile()">About</a>
 <a href="#programs" onclick="closeMobile()">Programs</a>
-
+<a href="#academics" onclick="closeMobile()">Academics</a>
 <a href="#faq" onclick="closeMobile()">FAQ</a>
 <a href="#admissions" onclick="closeMobile()">Book a Tour</a>
 </div>
@@ -575,7 +624,7 @@ Our mission is to provide a learning environment that is emotionally, physically
 <div class="hero-chip"><div class="chip-dot" style="background:var(--teal)"></div> 2 Campuses in Orange County</div>
 </div>
 <!-- LOCATION CARDS -->
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+<div class="hero-loc-grid">
 <div class="loc-card loc-teal">
 <div class="loc-card-header">
 <div class="loc-header-icon">🏫</div>
@@ -656,6 +705,8 @@ Our mission is to provide a learning environment that is emotionally, physically
 <div class="trust-item ti-green"><span>🌍</span> Love, Harmony & Beauty</div>
 <div class="trust-div"></div>
 <div class="trust-item ti-blue"><span>📘</span> Montessori Credentialed Teachers</div>
+<div class="trust-div"></div>
+<div class="trust-item ti-purple"><span>🎓</span> California Curriculum Aligned</div>
 </div>
 <!-- MISSION / ABOUT -->
 <section class="mission" id="mission">
@@ -719,7 +770,7 @@ From Kindergarten through 6th grade, each program is rooted in the Montessori me
 <div class="prog-tag tag-blue">🔬 Elementary</div>
 <div class="prog-name">Elementary K–6</div>
 <div class="prog-ages">Kindergarten through 6th Grade</div>
-<div class="prog-desc">Elementary students engage in the Cosmic Curriculum — an integrated study of language arts, mathematics, science, history, and the arts. Research, collaboration, and independent inquiry are central to every school day.</div>
+<div class="prog-desc">Elementary students engage in the Cosmic Curriculum — an integrated study of language arts, mathematics, science, history, and the arts, aligned with California academic standards. Research, collaboration, and independent inquiry are central to every school day.</div>
 </div>
 </div>
 <div class="prog-card" style="--accent-color: var(--burgundy);">
@@ -741,6 +792,39 @@ From Kindergarten through 6th grade, each program is rooted in the Montessori me
 </div>
 </div>
 </div>
+</div>
+</section>
+<!-- ACADEMICS -->
+<section class="academics" id="academics">
+<div class="academics-inner">
+<div class="section-tag st-blue">📐 Academic Excellence</div>
+<h2 class="section-title">Montessori academics rooted in <span class="accent accent-blue">California standards</span></h2>
+<p class="section-sub">
+Every classroom blends the self-directed Montessori method with rigorous, grade-level academics aligned to California's curriculum frameworks — so students build deep understanding while staying on track for whatever school comes next.
+</p>
+<div class="academics-grid">
+<div class="academic-card" style="--ac-color: var(--blue); --ac-bg: var(--blue-light);">
+<div class="academic-icon">📖</div>
+<div class="academic-name">English Language Arts</div>
+<div class="academic-desc">Montessori language materials build phonemic awareness, reading fluency, and writing skills in step with California ELA standards.</div>
+</div>
+<div class="academic-card" style="--ac-color: var(--teal); --ac-bg: var(--teal-light);">
+<div class="academic-icon">🔢</div>
+<div class="academic-name">Mathematics</div>
+<div class="academic-desc">Hands-on materials like the golden beads and bead chains build true number sense while covering California math progressions K–6.</div>
+</div>
+<div class="academic-card" style="--ac-color: var(--green); --ac-bg: var(--green-light);">
+<div class="academic-icon">🔬</div>
+<div class="academic-name">Science</div>
+<div class="academic-desc">The Cosmic Curriculum's hands-on experiments and nature study align with Next Generation Science Standards used across California.</div>
+</div>
+<div class="academic-card" style="--ac-color: var(--yellow); --ac-bg: var(--yellow-light);">
+<div class="academic-icon">🌎</div>
+<div class="academic-name">History & Social Science</div>
+<div class="academic-desc">Timeline work and cultural studies build the geography, civics, and history foundations outlined in California's Social Science framework.</div>
+</div>
+</div>
+<div class="academics-note"><strong>Note:</strong> Curriculum is designed to align with California academic content standards while preserving the independence and pacing of the Montessori method. Contact your campus director for detailed scope and sequence by grade.</div>
 </div>
 </section>
 <!-- STATS -->
@@ -777,19 +861,19 @@ From Kindergarten through 6th grade, each program is rooted in the Montessori me
 <p class="section-sub">We welcome families of all racial, cultural, religious, and economic backgrounds. Our admissions process is designed to be an open and welcoming conversation.</p>
 <div class="steps">
 <div class="step-card">
-<div class="step-badge">1</div>
+<div class="step-badge sb-1">1</div>
 <div><div class="step-title">Request Information or Book a Tour</div><div class="step-desc">Contact us or visit your nearest campus to meet the director and see our prepared environment in action.</div></div>
 </div>
 <div class="step-card">
-<div class="step-badge">2</div>
+<div class="step-badge sb-2">2</div>
 <div><div class="step-title">Submit an Application</div><div class="step-desc">Complete a short application form. Our team will follow up within one business day to discuss availability and next steps.</div></div>
 </div>
 <div class="step-card">
-<div class="step-badge">3</div>
+<div class="step-badge sb-3">3</div>
 <div><div class="step-title">Campus Visit & Orientation</div><div class="step-desc">Your child visits the classroom. We walk you through our curriculum, ratios, schedules, and tuition options.</div></div>
 </div>
 <div class="step-card">
-<div class="step-badge">4</div>
+<div class="step-badge sb-4">4</div>
 <div><div class="step-title">Welcome to the IMA Family!</div><div class="step-desc">Enrollment confirmed. We provide a gentle transition plan so your child feels safe and excited from day one.</div></div>
 </div>
 </div>
