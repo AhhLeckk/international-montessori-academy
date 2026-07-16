@@ -8,887 +8,901 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --burgundy: #6B1B2A;
-    --burgundy-dark: #4A1019;
-    --burgundy-light: #C4677A;
-    --burgundy-pale: #FCF0F2;
-    --teal: #2A8C8C;
-    --teal-light: #E3F5F5;
-    --yellow: #D4940A;
-    --yellow-light: #FFF6E0;
-    --green: #3A8A5C;
-    --green-light: #E4F5EC;
-    --blue: #2E6FB4;
-    --blue-light: #E5EFFC;
-    --cream: #FFFBF6;
-    --white: #FFFFFF;
-    --gray-light: #F7F4F0;
-    --text-dark: #1A1A2E;
-    --text-mid: #4A4A6A;
-    --text-light: #8888AA;
-    --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 18px;
-    --shadow-sm: 0 2px 12px rgba(107,27,42,0.08);
-    --shadow-md: 0 8px 32px rgba(107,27,42,0.12);
-    --shadow-lg: 0 16px 56px rgba(107,27,42,0.14);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--font-main); background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,251,246,0.97); backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(107,27,42,0.08);
-    padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
-    height: 76px;
-  }
-  .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 12px; }
-  .nav-logo-icon {
-    width: 44px; height: 44px; border-radius: 8px;
-    background: var(--burgundy); display: flex; align-items: center;
-    justify-content: center; font-size: 22px; flex-shrink: 0;
-  }
-  .nav-logo-name { font-size: 1rem; font-weight: 800; color: var(--burgundy-dark); line-height: 1.2; }
-  .nav-logo-sub { font-size: 0.63rem; font-weight: 500; color: var(--text-light); letter-spacing: 0.04em; }
-  .nav-links { display: flex; gap: 4px; align-items: center; }
-  .nav-links a {
-    font-size: 0.85rem; font-weight: 600; color: var(--text-mid);
-    text-decoration: none; padding: 8px 12px; border-radius: var(--radius-sm);
-    transition: all 0.2s;
-  }
-  .nav-links a:hover { background: var(--burgundy-pale); color: var(--burgundy); }
-  .nav-cta {
-    background: var(--burgundy) !important; color: white !important;
-    padding: 10px 20px !important; border-radius: var(--radius-md) !important;
-    font-weight: 700 !important; box-shadow: 0 4px 14px rgba(107,27,42,0.28);
-    transition: all 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--burgundy-dark) !important; transform: translateY(-1px); }
-  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
-  .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--burgundy); border-radius: 2px; }
-  .mobile-menu {
-    display: none; position: fixed; inset: 0; z-index: 99;
-    background: var(--cream); padding: 100px 8% 48px;
-    flex-direction: column; gap: 4px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-size: 1.6rem; font-weight: 700; color: var(--burgundy-dark);
-    text-decoration: none; padding: 12px 0;
-    border-bottom: 1px solid rgba(107,27,42,0.08);
-  }
-  /* HERO */
-  .hero {
-    padding-top: 76px;
-    background: linear-gradient(160deg, var(--cream) 0%, #FFF0F2 55%, #FFF8F0 100%);
-    min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; top: -100px; right: -100px;
-    width: 500px; height: 500px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-left { padding: 80px 5% 80px 10%; position: relative; z-index: 1; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--yellow-light); color: var(--yellow);
-    padding: 7px 14px; border-radius: var(--radius-md);
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-    margin-bottom: 24px; border: 1.5px solid rgba(212,148,10,0.2);
-  }
-  .hero-title {
-    font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 800;
-    line-height: 1.1; color: var(--text-dark); margin-bottom: 10px;
-    letter-spacing: -0.02em;
-  }
-  .hero-title .highlight {
-    color: var(--burgundy);
-    background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .hero-tagline {
-    font-family: var(--font-serif); font-style: italic;
-    font-size: 1.25rem; color: var(--burgundy-light);
-    margin-bottom: 20px; font-weight: 400;
-  }
-  .hero-body {
-    font-size: 1rem; font-weight: 400; line-height: 1.78;
-    color: var(--text-mid); max-width: 430px; margin-bottom: 36px;
-  }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
-  .btn-primary {
-    background: var(--burgundy); color: white; padding: 14px 28px;
-    border-radius: var(--radius-md); font-family: var(--font-main);
-    font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer;
-    text-decoration: none; box-shadow: 0 4px 16px rgba(107,27,42,0.25);
-    transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary:hover { background: var(--burgundy-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(107,27,42,0.32); }
-  .btn-secondary {
-    background: white; color: var(--burgundy); padding: 13px 26px;
-    border-radius: var(--radius-md); font-family: var(--font-main);
-    font-size: 0.9rem; font-weight: 700; border: 2px solid rgba(107,27,42,0.18);
-    cursor: pointer; text-decoration: none; transition: all 0.2s;
-    display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm);
-  }
-  .btn-secondary:hover { border-color: var(--burgundy); background: var(--burgundy-pale); }
-  .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; }
-  .hero-chip {
-    display: flex; align-items: center; gap: 7px; background: white;
-    border-radius: var(--radius-md); padding: 8px 14px;
-    font-size: 0.8rem; font-weight: 600; color: var(--text-mid);
-    box-shadow: var(--shadow-sm); border: 1.5px solid rgba(107,27,42,0.07);
-  }
-  .chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .hero-right { padding: 60px 8% 60px 4%; position: relative; z-index: 1; }
-  .hero-img-stack { position: relative; }
-  .hero-img-main {
-    width: 100%; aspect-ratio: 4/5; object-fit: cover;
-    border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
-  }
-  .hero-img-float {
-    position: absolute; bottom: -20px; left: -24px;
-    width: 46%; aspect-ratio: 1; object-fit: cover;
-    border-radius: var(--radius-lg); border: 4px solid white; box-shadow: var(--shadow-md);
-  }
-  .hero-stat-card {
-    position: absolute; top: 24px; right: -16px; background: white;
-    border-radius: var(--radius-md); padding: 14px 18px;
-    box-shadow: var(--shadow-md); text-align: center; min-width: 96px;
-  }
-  .hero-stat-card .num { font-size: 1.7rem; font-weight: 800; color: var(--burgundy); line-height: 1; }
-  .hero-stat-card .lbl { font-size: 0.65rem; font-weight: 600; color: var(--text-light); margin-top: 2px; }
-  .hero-quote-card {
-    position: absolute; bottom: 50px; right: -12px;
-    background: var(--burgundy); color: white;
-    border-radius: var(--radius-md); padding: 16px 18px;
-    max-width: 200px; box-shadow: var(--shadow-md);
-  }
-  .hero-quote-text { font-size: 0.8rem; line-height: 1.5; font-style: italic; font-weight: 400; }
-  .hero-quote-attr { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; margin-top: 7px; }
-  /* TRUST BAR */
-  .trust-bar {
-    background: var(--burgundy); padding: 16px 5%;
-    display: flex; align-items: center; justify-content: center;
-    gap: 40px; flex-wrap: wrap;
-  }
-  .trust-item { display: flex; align-items: center; gap: 9px; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.82); }
-  .trust-item span { font-size: 1.1rem; }
-  .trust-div { width: 1px; height: 18px; background: rgba(255,255,255,0.2); }
-  /* SECTIONS */
-  section { padding: 96px 5%; }
-  .section-tag {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--burgundy-pale); color: var(--burgundy);
-    padding: 5px 13px; border-radius: var(--radius-md);
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .section-title {
-    font-size: clamp(1.75rem, 2.8vw, 2.5rem); font-weight: 800;
-    color: var(--text-dark); line-height: 1.15; letter-spacing: -0.02em;
-  }
-  .section-title .accent { color: var(--burgundy); }
-  .section-sub {
-    font-size: 0.97rem; font-weight: 400; color: var(--text-mid);
-    line-height: 1.78; max-width: 560px; margin-top: 14px;
-  }
-  /* MISSION */
-  .mission { background: white; }
-  .mission-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
-  }
-  .mission-img-wrap { position: relative; }
-  .mission-img-main { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); }
-  .mission-badge {
-    position: absolute; bottom: 20px; right: -18px;
-    background: var(--yellow-light); border: 2px solid rgba(212,148,10,0.2);
-    padding: 16px 20px; border-radius: var(--radius-md);
-    text-align: center; box-shadow: var(--shadow-md); min-width: 130px;
-  }
-  .mission-badge .b-num { font-size: 1.9rem; font-weight: 800; color: var(--yellow); line-height: 1; }
-  .mission-badge .b-lbl { font-size: 0.68rem; font-weight: 700; color: var(--text-mid); margin-top: 3px; }
-  .mission-content .section-title { margin-bottom: 18px; }
-  .mission-content p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
-  .mission-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
-  .pillar {
-    background: var(--gray-light); padding: 18px;
-    border-radius: var(--radius-md); border: 2px solid transparent; transition: all 0.2s;
-  }
-  .pillar:hover { border-color: var(--burgundy-light); background: var(--burgundy-pale); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-  .pillar-icon { font-size: 1.6rem; margin-bottom: 7px; }
-  .pillar-title { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-  .pillar-text { font-size: 0.78rem; color: var(--text-mid); line-height: 1.55; }
-  /* PROGRAMS */
-  .programs { background: var(--cream); }
-  .programs-inner { max-width: 1200px; margin: 0 auto; }
-  .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
-  .prog-card {
-    background: white; border-radius: var(--radius-lg); overflow: hidden;
-    box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.25s;
-  }
-  .prog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--accent-color, var(--burgundy-light)); }
-  .prog-card-img { height: 180px; overflow: hidden; }
-  .prog-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
-  .prog-card:hover .prog-card-img img { transform: scale(1.05); }
-  .prog-card-body { padding: 22px 22px 26px; }
-  .prog-tag {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 4px 10px; border-radius: var(--radius-sm);
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .tag-teal { background: var(--teal-light); color: var(--teal); }
-  .tag-yellow { background: var(--yellow-light); color: var(--yellow); }
-  .tag-green { background: var(--green-light); color: var(--green); }
-  .tag-blue { background: var(--blue-light); color: var(--blue); }
-  .tag-burgundy { background: var(--burgundy-pale); color: var(--burgundy); }
-  .tag-purple { background: #F0EAFF; color: #7B2FBE; }
-  .prog-name { font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; line-height: 1.3; }
-  .prog-ages { font-size: 0.75rem; font-weight: 600; color: var(--text-light); margin-bottom: 8px; }
-  .prog-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; }
-  /* CAMPUSES */
-  .campuses { background: var(--burgundy-dark); }
-  .campuses-inner { max-width: 1200px; margin: 0 auto; }
-  .campuses .section-tag { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
-  .campuses .section-title { color: white; }
-  .campuses .section-sub { color: rgba(255,255,255,0.55); }
-  .campuses-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 48px; }
-  .campus-card {
-    background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius-lg); padding: 24px 20px;
-    transition: all 0.25s; text-decoration: none; display: block; position: relative;
-  }
-  .campus-card:hover { background: rgba(255,255,255,0.11); border-color: rgba(201,168,76,0.45); transform: translateY(-3px); }
-  .campus-state {
-    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--yellow); margin-bottom: 8px;
-  }
-  .campus-name { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 6px; line-height: 1.3; }
-  .campus-type { font-size: 0.75rem; color: rgba(255,255,255,0.42); font-weight: 400; }
-  .campus-arrow {
-    position: absolute; top: 20px; right: 16px;
-    width: 24px; height: 24px; border-radius: var(--radius-sm);
-    border: 1px solid rgba(255,255,255,0.15);
-    display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.3); font-size: 11px; transition: all 0.2s;
-  }
-  .campus-card:hover .campus-arrow { border-color: var(--yellow); color: var(--yellow); }
-  /* STATS */
-  .stats-band {
-    background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
-    padding: 72px 5%;
-  }
-  .stats-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .stat-card {
-    background: rgba(255,255,255,0.09); border-radius: var(--radius-lg);
-    padding: 28px 20px; text-align: center;
-    border: 1.5px solid rgba(255,255,255,0.13); transition: background 0.2s;
-  }
-  .stat-card:hover { background: rgba(255,255,255,0.15); }
-  .stat-icon { font-size: 2rem; margin-bottom: 10px; }
-  .stat-num { font-size: 2.4rem; font-weight: 800; color: white; line-height: 1; margin-bottom: 5px; }
-  .stat-lbl { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.55); }
-  /* LOCATIONS */
-  .locations { background: var(--cream); }
-  .locations-inner { max-width: 1200px; margin: 0 auto; }
-  .locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
-  .loc-card {
-    background: white; border-radius: var(--radius-lg);
-    border: 2px solid rgba(107,27,42,0.08);
-    box-shadow: var(--shadow-sm); overflow: hidden; transition: all 0.25s;
-  }
-  .loc-card:hover { box-shadow: var(--shadow-md); border-color: var(--burgundy-light); transform: translateY(-3px); }
-  .loc-card-header {
-    background: var(--burgundy); padding: 20px 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .loc-header-icon {
-    width: 38px; height: 38px; border-radius: var(--radius-sm);
-    background: rgba(255,255,255,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  .loc-header-name { font-size: 0.97rem; font-weight: 700; color: white; line-height: 1.3; }
-  .loc-header-type { font-size: 0.7rem; color: rgba(255,255,255,0.6); font-weight: 500; margin-top: 2px; }
-  .loc-card-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
-  .loc-row { display: flex; gap: 12px; align-items: flex-start; }
-  .loc-row-icon {
-    width: 32px; height: 32px; border-radius: var(--radius-sm);
-    background: var(--burgundy-pale); display: flex; align-items: center;
-    justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 1px;
-  }
-  .loc-row-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light); margin-bottom: 2px; }
-  .loc-row-value { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); line-height: 1.5; }
-  .loc-row-value a { color: var(--burgundy); text-decoration: none; }
-  .loc-row-value a:hover { text-decoration: underline; }
-  .loc-map-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--burgundy-pale); color: var(--burgundy);
-    padding: 9px 16px; border-radius: var(--radius-sm);
-    font-size: 0.8rem; font-weight: 700; text-decoration: none;
-    transition: all 0.2s; border: 1.5px solid rgba(107,27,42,0.12);
-    align-self: flex-start;
-  }
-  .loc-map-btn:hover { background: var(--burgundy); color: white; }
-  @media (max-width: 700px) { .locations-grid { grid-template-columns: 1fr; } }
-  /* ADMISSIONS */
-  .admissions { background: var(--cream); }
-  .admissions-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; align-items: start;
-  }
-  .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
-  .step-card {
-    background: white; border-radius: var(--radius-md); padding: 20px 22px;
-    display: flex; gap: 16px; align-items: flex-start;
-    box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.2s;
-  }
-  .step-card:hover { border-color: var(--burgundy-light); transform: translateX(3px); }
-  .step-badge {
-    width: 36px; height: 36px; border-radius: var(--radius-sm);
-    background: var(--burgundy); color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; font-weight: 800; flex-shrink: 0;
-  }
-  .step-title { font-size: 0.93rem; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
-  .step-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.55; }
-  /* BOOKING FORM */
-  .booking-form {
-    background: white; padding: 0;
-    border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
-    border: 2px solid rgba(107,27,42,0.07); overflow: hidden;
-  }
-  .form-head {
-    background: var(--burgundy); padding: 26px 32px;
-  }
-  .form-head-title { font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 3px; }
-  .form-head-sub { font-size: 0.8rem; color: rgba(255,255,255,0.65); }
-  .form-body { padding: 28px 32px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .form-group { margin-bottom: 14px; }
-  .form-group label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-mid); margin-bottom: 5px; }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%; padding: 10px 14px;
-    font-family: var(--font-main); font-size: 0.88rem; font-weight: 400;
-    color: var(--text-dark); background: var(--gray-light);
-    border: 2px solid transparent; border-radius: var(--radius-sm);
-    outline: none; transition: all 0.2s; appearance: none; -webkit-appearance: none;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--burgundy); background: white; box-shadow: 0 0 0 3px rgba(107,27,42,0.07); }
-  .form-group select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B1B2A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 12px center;
-    background-color: var(--gray-light); padding-right: 34px;
-  }
-  .form-group textarea { resize: vertical; min-height: 76px; }
-  .form-submit {
-    width: 100%; padding: 14px; background: var(--burgundy); color: white;
-    font-family: var(--font-main); font-size: 0.95rem; font-weight: 800;
-    border: none; cursor: pointer; border-radius: var(--radius-md);
-    box-shadow: 0 4px 16px rgba(107,27,42,0.28); transition: all 0.2s;
-  }
-  .form-submit:hover { background: var(--burgundy-dark); transform: translateY(-1px); }
-  .form-success { display: none; text-align: center; padding: 48px 28px; }
-  .form-success-icon { font-size: 3rem; margin-bottom: 14px; }
-  .form-success h3 { font-size: 1.4rem; font-weight: 800; color: var(--burgundy-dark); margin-bottom: 10px; }
-  .form-success p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
-  /* FAQ */
-  .faq { background: white; }
-  .faq-inner { max-width: 760px; margin: 0 auto; }
-  .faq-inner .section-title { margin-bottom: 36px; }
-  .faq-item {
-    background: var(--gray-light); border-radius: var(--radius-md); margin-bottom: 10px;
-    overflow: hidden; border: 2px solid transparent; transition: border-color 0.2s;
-  }
-  .faq-item.open { border-color: var(--burgundy-light); background: white; }
-  .faq-question {
-    padding: 20px 22px; font-size: 0.97rem; font-weight: 700; color: var(--text-dark);
-    cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px;
-  }
-  .faq-icon {
-    width: 26px; height: 26px; border-radius: var(--radius-sm);
-    background: var(--burgundy-pale); color: var(--burgundy);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0; transition: all 0.3s; line-height: 1;
-  }
-  .faq-item.open .faq-icon { background: var(--burgundy); color: white; transform: rotate(45deg); }
-  .faq-answer {
-    font-size: 0.88rem; color: var(--text-mid); line-height: 1.8;
-    max-height: 0; overflow: hidden; padding: 0 22px;
-    transition: max-height 0.35s ease, padding 0.2s;
-  }
-  .faq-item.open .faq-answer { max-height: 300px; padding: 0 22px 20px; }
-  /* FOOTER */
-  footer { background: var(--text-dark); padding: 72px 5% 40px; color: rgba(255,255,255,0.45); }
-  .footer-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
-    padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 28px;
-  }
-  .footer-logo-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--burgundy); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
-  .footer-brand-name { font-size: 1rem; font-weight: 800; color: white; margin-bottom: 3px; }
-  .footer-brand-sub { font-size: 0.65rem; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; margin-bottom: 14px; }
-  .footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 0.88rem; color: rgba(255,255,255,0.35); line-height: 1.7; }
-  .footer-col-title { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: white; margin-bottom: 14px; }
-  .footer-links { display: flex; flex-direction: column; gap: 9px; }
-  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: white; }
-  .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; }
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .programs-grid { grid-template-columns: 1fr 1fr; }
-    .campuses-grid { grid-template-columns: 1fr 1fr; }
-    .stats-inner { grid-template-columns: 1fr 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 860px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-right { display: none; }
-    .hero-left { padding: 60px 6%; text-align: center; align-items: center; }
-    .hero-body { max-width: 100%; }
-    .hero-actions, .hero-chips { justify-content: center; }
-    .mission-inner { grid-template-columns: 1fr; }
-    .mission-img-wrap { display: none; }
-    .admissions-inner { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-    .form-row { grid-template-columns: 1fr; }
-    section { padding: 72px 5%; }
-    .trust-div { display: none; }
-  }
-  @media (max-width: 600px) {
-    .programs-grid { grid-template-columns: 1fr; }
-    .campuses-grid { grid-template-columns: 1fr 1fr; }
-    .footer-inner { grid-template-columns: 1fr; }
-    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-    .mission-pillars { grid-template-columns: 1fr; }
-  }
+:root {
+--burgundy: #6B1B2A;
+--burgundy-dark: #4A1019;
+--burgundy-light: #C4677A;
+--burgundy-pale: #FCF0F2;
+--teal: #2A8C8C;
+--teal-light: #E3F5F5;
+--yellow: #D4940A;
+--yellow-light: #FFF6E0;
+--green: #3A8A5C;
+--green-light: #E4F5EC;
+--blue: #2E6FB4;
+--blue-light: #E5EFFC;
+--cream: #FFFBF6;
+--white: #FFFFFF;
+--gray-light: #F7F4F0;
+--text-dark: #1A1A2E;
+--text-mid: #4A4A6A;
+--text-light: #8888AA;
+--font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+--font-serif: 'Cormorant Garamond', Georgia, serif;
+--radius-sm: 6px;
+--radius-md: 10px;
+--radius-lg: 14px;
+--radius-xl: 18px;
+--shadow-sm: 0 2px 12px rgba(107,27,42,0.08);
+--shadow-md: 0 8px 32px rgba(107,27,42,0.12);
+--shadow-lg: 0 16px 56px rgba(107,27,42,0.14);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-main); background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+/* NAV */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+background: rgba(255,251,246,0.97); backdrop-filter: blur(16px);
+border-bottom: 1px solid rgba(107,27,42,0.08);
+padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+height: 76px;
+}
+.nav-logo { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+.nav-logo-icon {
+width: 44px; height: 44px; border-radius: 8px;
+background: var(--burgundy); display: flex; align-items: center;
+justify-content: center; font-size: 22px; flex-shrink: 0;
+}
+.nav-logo-name { font-size: 1rem; font-weight: 800; color: var(--burgundy-dark); line-height: 1.2; }
+.nav-logo-sub { font-size: 0.63rem; font-weight: 500; color: var(--text-light); letter-spacing: 0.04em; }
+.nav-links { display: flex; gap: 4px; align-items: center; }
+.nav-links a {
+font-size: 0.85rem; font-weight: 600; color: var(--text-mid);
+text-decoration: none; padding: 8px 12px; border-radius: var(--radius-sm);
+transition: all 0.2s;
+}
+.nav-links a:hover { background: var(--burgundy-pale); color: var(--burgundy); }
+.nav-cta {
+background: var(--burgundy) !important; color: white !important;
+padding: 10px 20px !important; border-radius: var(--radius-md) !important;
+font-weight: 700 !important; box-shadow: 0 4px 14px rgba(107,27,42,0.28);
+transition: all 0.2s !important;
+}
+.nav-cta:hover { background: var(--burgundy-dark) !important; transform: translateY(-1px); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+.nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--burgundy); border-radius: 2px; }
+.mobile-menu {
+display: none; position: fixed; inset: 0; z-index: 99;
+background: var(--cream); padding: 100px 8% 48px;
+flex-direction: column; gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+font-size: 1.6rem; font-weight: 700; color: var(--burgundy-dark);
+text-decoration: none; padding: 12px 0;
+border-bottom: 1px solid rgba(107,27,42,0.08);
+}
+/* HERO */
+.hero {
+padding-top: 76px;
+background: linear-gradient(160deg, var(--cream) 0%, #FFF0F2 55%, #FFF8F0 100%);
+min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr;
+align-items: center; position: relative; overflow: hidden;
+}
+.hero::before {
+content: ''; position: absolute; top: -100px; right: -100px;
+width: 500px; height: 500px; border-radius: 50%;
+background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+pointer-events: none;
+}
+.hero::after {
+content: ''; position: absolute; bottom: -120px; left: -120px;
+width: 460px; height: 460px; border-radius: 50%;
+background: radial-gradient(circle, rgba(42,140,140,0.14) 0%, transparent 70%);
+pointer-events: none;
+}
+.hero-left { padding: 80px 5% 80px 10%; position: relative; z-index: 1; }
+.hero-tag {
+display: inline-flex; align-items: center; gap: 8px;
+background: var(--yellow-light); color: var(--yellow);
+padding: 7px 14px; border-radius: var(--radius-md);
+font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+margin-bottom: 24px; border: 1.5px solid rgba(212,148,10,0.2);
+}
+.hero-title {
+font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 800;
+line-height: 1.1; color: var(--text-dark); margin-bottom: 10px;
+letter-spacing: -0.02em;
+}
+.hero-title .highlight {
+color: var(--burgundy);
+background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-tagline {
+font-family: var(--font-serif); font-style: italic;
+font-size: 1.25rem; color: var(--burgundy-light);
+margin-bottom: 20px; font-weight: 400;
+}
+.hero-body {
+font-size: 1rem; font-weight: 400; line-height: 1.78;
+color: var(--text-mid); max-width: 430px; margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+.btn-primary {
+background: var(--burgundy); color: white; padding: 14px 28px;
+border-radius: var(--radius-md); font-family: var(--font-main);
+font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer;
+text-decoration: none; box-shadow: 0 4px 16px rgba(107,27,42,0.25);
+transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--burgundy-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(107,27,42,0.32); }
+.btn-secondary {
+background: white; color: var(--burgundy); padding: 13px 26px;
+border-radius: var(--radius-md); font-family: var(--font-main);
+font-size: 0.9rem; font-weight: 700; border: 2px solid rgba(107,27,42,0.18);
+cursor: pointer; text-decoration: none; transition: all 0.2s;
+display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover { border-color: var(--burgundy); background: var(--burgundy-pale); }
+.hero-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-chip {
+display: flex; align-items: center; gap: 7px; background: white;
+border-radius: var(--radius-md); padding: 8px 14px;
+font-size: 0.8rem; font-weight: 600; color: var(--text-mid);
+box-shadow: var(--shadow-sm); border: 1.5px solid rgba(107,27,42,0.07);
+}
+.chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.hero-right { padding: 60px 8% 60px 4%; position: relative; z-index: 1; }
+.hero-img-stack { position: relative; }
+.hero-img-main {
+width: 100%; aspect-ratio: 4/5; object-fit: cover;
+border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+}
+.hero-img-float {
+position: absolute; bottom: -20px; left: -24px;
+width: 46%; aspect-ratio: 1; object-fit: cover;
+border-radius: var(--radius-lg); border: 4px solid white; box-shadow: var(--shadow-md);
+}
+.hero-stat-card {
+position: absolute; top: 24px; right: -16px; background: white;
+border-radius: var(--radius-md); padding: 14px 18px;
+box-shadow: var(--shadow-md); text-align: center; min-width: 96px;
+}
+.hero-stat-card .num { font-size: 1.7rem; font-weight: 800; color: var(--burgundy); line-height: 1; }
+.hero-stat-card .lbl { font-size: 0.65rem; font-weight: 600; color: var(--text-light); margin-top: 2px; }
+.hero-quote-card {
+position: absolute; bottom: 50px; right: -12px;
+background: var(--burgundy); color: white;
+border-radius: var(--radius-md); padding: 16px 18px;
+max-width: 200px; box-shadow: var(--shadow-md);
+}
+.hero-quote-text { font-size: 0.8rem; line-height: 1.5; font-style: italic; font-weight: 400; }
+.hero-quote-attr { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; margin-top: 7px; }
+/* TRUST BAR */
+.trust-bar {
+background: var(--burgundy); padding: 16px 5%;
+display: flex; align-items: center; justify-content: center;
+gap: 40px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: center; gap: 9px; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.82); }
+.trust-item span { font-size: 1.1rem; }
+.trust-div { width: 1px; height: 18px; background: rgba(255,255,255,0.2); }
+/* SECTIONS */
+section { padding: 96px 5%; }
+.section-tag {
+display: inline-flex; align-items: center; gap: 6px;
+background: var(--burgundy-pale); color: var(--burgundy);
+padding: 5px 13px; border-radius: var(--radius-md);
+font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+margin-bottom: 14px;
+}
+.section-tag.st-teal { background: var(--teal-light); color: var(--teal); }
+.section-tag.st-green { background: var(--green-light); color: var(--green); }
+.section-tag.st-yellow { background: var(--yellow-light); color: var(--yellow); }
+.section-title {
+font-size: clamp(1.75rem, 2.8vw, 2.5rem); font-weight: 800;
+color: var(--text-dark); line-height: 1.15; letter-spacing: -0.02em;
+}
+.section-title .accent { color: var(--burgundy); }
+.section-title .accent.accent-teal { color: var(--teal); }
+.section-title .accent.accent-green { color: var(--green); }
+.section-title .accent.accent-yellow { color: var(--yellow); }
+.section-sub {
+font-size: 0.97rem; font-weight: 400; color: var(--text-mid);
+line-height: 1.78; max-width: 560px; margin-top: 14px;
+}
+/* MISSION */
+.mission { background: white; }
+.mission-inner {
+max-width: 1200px; margin: 0 auto;
+display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.mission-img-wrap { position: relative; }
+.mission-img-main { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); }
+.mission-badge {
+position: absolute; bottom: 20px; right: -18px;
+background: var(--yellow-light); border: 2px solid rgba(212,148,10,0.2);
+padding: 16px 20px; border-radius: var(--radius-md);
+text-align: center; box-shadow: var(--shadow-md); min-width: 130px;
+}
+.mission-badge .b-num { font-size: 1.9rem; font-weight: 800; color: var(--yellow); line-height: 1; }
+.mission-badge .b-lbl { font-size: 0.68rem; font-weight: 700; color: var(--text-mid); margin-top: 3px; }
+.mission-content .section-title { margin-bottom: 18px; }
+.mission-content p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
+.mission-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+.pillar {
+background: var(--gray-light); padding: 18px;
+border-radius: var(--radius-md); border: 2px solid transparent; transition: all 0.2s;
+}
+.pillar:hover { border-color: var(--burgundy-light); background: var(--burgundy-pale); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.pillar-icon { font-size: 1.6rem; margin-bottom: 7px; }
+.pillar-title { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+.pillar-text { font-size: 0.78rem; color: var(--text-mid); line-height: 1.55; }
+.pillar:nth-child(1) { border-left: 4px solid var(--burgundy-light); }
+.pillar:nth-child(2) { border-left: 4px solid var(--teal); }
+.pillar:nth-child(3) { border-left: 4px solid var(--yellow); }
+.pillar:nth-child(4) { border-left: 4px solid var(--green); }
+/* PROGRAMS */
+.programs { background: var(--cream); }
+.programs-inner { max-width: 1200px; margin: 0 auto; }
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+.prog-card {
+background: white; border-radius: var(--radius-lg); overflow: hidden;
+box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.25s;
+}
+.prog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--accent-color, var(--burgundy-light)); }
+.prog-card-img { height: 180px; overflow: hidden; }
+.prog-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+.prog-card:hover .prog-card-img img { transform: scale(1.05); }
+.prog-card-body { padding: 22px 22px 26px; }
+.prog-tag {
+display: inline-flex; align-items: center; gap: 5px;
+padding: 4px 10px; border-radius: var(--radius-sm);
+font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+margin-bottom: 10px;
+}
+.tag-teal { background: var(--teal-light); color: var(--teal); }
+.tag-yellow { background: var(--yellow-light); color: var(--yellow); }
+.tag-green { background: var(--green-light); color: var(--green); }
+.tag-blue { background: var(--blue-light); color: var(--blue); }
+.tag-burgundy { background: var(--burgundy-pale); color: var(--burgundy); }
+.tag-purple { background: #F0EAFF; color: #7B2FBE; }
+.prog-name { font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; line-height: 1.3; }
+.prog-ages { font-size: 0.75rem; font-weight: 600; color: var(--text-light); margin-bottom: 8px; }
+.prog-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; }
+/* CAMPUSES */
+.campuses { background: var(--burgundy-dark); }
+.campuses-inner { max-width: 1200px; margin: 0 auto; }
+.campuses .section-tag { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
+.campuses .section-title { color: white; }
+.campuses .section-sub { color: rgba(255,255,255,0.55); }
+.campuses-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 48px; }
+.campus-card {
+background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1);
+border-radius: var(--radius-lg); padding: 24px 20px;
+transition: all 0.25s; text-decoration: none; display: block; position: relative;
+}
+.campus-card:hover { background: rgba(255,255,255,0.11); border-color: rgba(201,168,76,0.45); transform: translateY(-3px); }
+.campus-state {
+font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+color: var(--yellow); margin-bottom: 8px;
+}
+.campus-name { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 6px; line-height: 1.3; }
+.campus-type { font-size: 0.75rem; color: rgba(255,255,255,0.42); font-weight: 400; }
+.campus-arrow {
+position: absolute; top: 20px; right: 16px;
+width: 24px; height: 24px; border-radius: var(--radius-sm);
+border: 1px solid rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+color: rgba(255,255,255,0.3); font-size: 11px; transition: all 0.2s;
+}
+.campus-card:hover .campus-arrow { border-color: var(--yellow); color: var(--yellow); }
+/* STATS */
+.stats-band {
+background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+padding: 72px 5%;
+}
+.stats-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.stat-card {
+background: rgba(255,255,255,0.09); border-radius: var(--radius-lg);
+padding: 28px 20px; text-align: center;
+border: 1.5px solid rgba(255,255,255,0.13); transition: background 0.2s;
+}
+.stat-card:hover { background: rgba(255,255,255,0.15); }
+.stat-icon { font-size: 2rem; margin-bottom: 10px; }
+.stat-num { font-size: 2.4rem; font-weight: 800; color: white; line-height: 1; margin-bottom: 5px; }
+.stat-lbl { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.55); }
+/* LOCATIONS */
+.locations { background: var(--cream); }
+.locations-inner { max-width: 1200px; margin: 0 auto; }
+.locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+.loc-card {
+background: white; border-radius: var(--radius-lg);
+border: 2px solid rgba(107,27,42,0.08);
+box-shadow: var(--shadow-sm); overflow: hidden; transition: all 0.25s;
+}
+.loc-card:hover { box-shadow: var(--shadow-md); border-color: var(--burgundy-light); transform: translateY(-3px); }
+.loc-card-header {
+background: var(--burgundy); padding: 20px 24px;
+display: flex; align-items: center; gap: 12px;
+}
+.loc-header-icon {
+width: 38px; height: 38px; border-radius: var(--radius-sm);
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+font-size: 18px; flex-shrink: 0;
+}
+.loc-header-name { font-size: 0.97rem; font-weight: 700; color: white; line-height: 1.3; }
+.loc-header-type { font-size: 0.7rem; color: rgba(255,255,255,0.6); font-weight: 500; margin-top: 2px; }
+.loc-card-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.loc-row { display: flex; gap: 12px; align-items: flex-start; }
+.loc-row-icon {
+width: 32px; height: 32px; border-radius: var(--radius-sm);
+background: var(--burgundy-pale); display: flex; align-items: center;
+justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 1px;
+}
+.loc-row-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light); margin-bottom: 2px; }
+.loc-row-value { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); line-height: 1.5; }
+.loc-row-value a { color: var(--burgundy); text-decoration: none; }
+.loc-row-value a:hover { text-decoration: underline; }
+.loc-map-btn {
+display: inline-flex; align-items: center; gap: 6px;
+background: var(--burgundy-pale); color: var(--burgundy);
+padding: 9px 16px; border-radius: var(--radius-sm);
+font-size: 0.8rem; font-weight: 700; text-decoration: none;
+transition: all 0.2s; border: 1.5px solid rgba(107,27,42,0.12);
+align-self: flex-start;
+}
+.loc-map-btn:hover { background: var(--burgundy); color: white; }
+@media (max-width: 700px) { .locations-grid { grid-template-columns: 1fr; } }
+/* ADMISSIONS */
+.admissions { background: var(--cream); }
+.admissions-inner {
+max-width: 1100px; margin: 0 auto;
+display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; align-items: start;
+}
+.steps { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.step-card {
+background: white; border-radius: var(--radius-md); padding: 20px 22px;
+display: flex; gap: 16px; align-items: flex-start;
+box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.2s;
+}
+.step-card:hover { border-color: var(--burgundy-light); transform: translateX(3px); }
+.step-badge {
+width: 36px; height: 36px; border-radius: var(--radius-sm);
+background: var(--burgundy); color: white;
+display: flex; align-items: center; justify-content: center;
+font-size: 1rem; font-weight: 800; flex-shrink: 0;
+}
+.step-title { font-size: 0.93rem; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+.step-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.55; }
+/* BOOKING FORM */
+.booking-form {
+background: white; padding: 0;
+border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+border: 2px solid rgba(107,27,42,0.07); overflow: hidden;
+}
+.form-head {
+background: var(--burgundy); padding: 26px 32px;
+}
+.form-head-title { font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 3px; }
+.form-head-sub { font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+.form-body { padding: 28px 32px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-mid); margin-bottom: 5px; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%; padding: 10px 14px;
+font-family: var(--font-main); font-size: 0.88rem; font-weight: 400;
+color: var(--text-dark); background: var(--gray-light);
+border: 2px solid transparent; border-radius: var(--radius-sm);
+outline: none; transition: all 0.2s; appearance: none; -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--burgundy); background: white; box-shadow: 0 0 0 3px rgba(107,27,42,0.07); }
+.form-group select {
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B1B2A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+background-repeat: no-repeat; background-position: right 12px center;
+background-color: var(--gray-light); padding-right: 34px;
+}
+.form-group textarea { resize: vertical; min-height: 76px; }
+.form-submit {
+width: 100%; padding: 14px; background: var(--burgundy); color: white;
+font-family: var(--font-main); font-size: 0.95rem; font-weight: 800;
+border: none; cursor: pointer; border-radius: var(--radius-md);
+box-shadow: 0 4px 16px rgba(107,27,42,0.28); transition: all 0.2s;
+}
+.form-submit:hover { background: var(--burgundy-dark); transform: translateY(-1px); }
+.form-success { display: none; text-align: center; padding: 48px 28px; }
+.form-success-icon { font-size: 3rem; margin-bottom: 14px; }
+.form-success h3 { font-size: 1.4rem; font-weight: 800; color: var(--burgundy-dark); margin-bottom: 10px; }
+.form-success p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+/* FAQ */
+.faq { background: white; }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-inner .section-title { margin-bottom: 36px; }
+.faq-item {
+background: var(--gray-light); border-radius: var(--radius-md); margin-bottom: 10px;
+overflow: hidden; border: 2px solid transparent; transition: border-color 0.2s;
+}
+.faq-item.open { border-color: var(--burgundy-light); background: white; }
+.faq-question {
+padding: 20px 22px; font-size: 0.97rem; font-weight: 700; color: var(--text-dark);
+cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px;
+}
+.faq-icon {
+width: 26px; height: 26px; border-radius: var(--radius-sm);
+background: var(--burgundy-pale); color: var(--burgundy);
+display: flex; align-items: center; justify-content: center;
+font-size: 1.1rem; flex-shrink: 0; transition: all 0.3s; line-height: 1;
+}
+.faq-item.open .faq-icon { background: var(--burgundy); color: white; transform: rotate(45deg); }
+.faq-answer {
+font-size: 0.88rem; color: var(--text-mid); line-height: 1.8;
+max-height: 0; overflow: hidden; padding: 0 22px;
+transition: max-height 0.35s ease, padding 0.2s;
+}
+.faq-item.open .faq-answer { max-height: 300px; padding: 0 22px 20px; }
+/* FOOTER */
+footer { background: var(--text-dark); padding: 72px 5% 40px; color: rgba(255,255,255,0.45); }
+.footer-inner {
+max-width: 1200px; margin: 0 auto;
+display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 28px;
+}
+.footer-logo-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--burgundy); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
+.footer-brand-name { font-size: 1rem; font-weight: 800; color: white; margin-bottom: 3px; }
+.footer-brand-sub { font-size: 0.65rem; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; margin-bottom: 14px; }
+.footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 0.88rem; color: rgba(255,255,255,0.35); line-height: 1.7; }
+.footer-col-title { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: white; margin-bottom: 14px; }
+.footer-links { display: flex; flex-direction: column; gap: 9px; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; }
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+.programs-grid { grid-template-columns: 1fr 1fr; }
+.campuses-grid { grid-template-columns: 1fr 1fr; }
+.stats-inner { grid-template-columns: 1fr 1fr; }
+.footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+.hero { grid-template-columns: 1fr; min-height: auto; }
+.hero-right { display: none; }
+.hero-left { padding: 60px 6%; text-align: center; align-items: center; }
+.hero-body { max-width: 100%; }
+.hero-actions, .hero-chips { justify-content: center; }
+.mission-inner { grid-template-columns: 1fr; }
+.mission-img-wrap { display: none; }
+.admissions-inner { grid-template-columns: 1fr; }
+.nav-links { display: none; }
+.nav-hamburger { display: flex; }
+.form-row { grid-template-columns: 1fr; }
+section { padding: 72px 5%; }
+.trust-div { display: none; }
+}
+@media (max-width: 600px) {
+.programs-grid { grid-template-columns: 1fr; }
+.campuses-grid { grid-template-columns: 1fr 1fr; }
+.footer-inner { grid-template-columns: 1fr; }
+.footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+.mission-pillars { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="#">
-    <img src="logo.png" alt="International Montessori Academies USA" style="height: 52px; width: auto;">
-  </a>
-  <div class="nav-links">
-    <a href="#mission">About</a>
-    <a href="#programs">Programs</a>
-    
-    
-    <a href="#faq">FAQ</a>
-    <a href="#admissions" class="nav-cta">Book a Tour</a>
-  </div>
-  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+<a class="nav-logo" href="#">
+<img src="logo.png" alt="International Montessori Academies USA" style="height: 52px; width: auto;">
+</a>
+<div class="nav-links">
+<a href="#mission">About</a>
+<a href="#programs">Programs</a>
+
+<a href="#faq">FAQ</a>
+<a href="#admissions" class="nav-cta">Book a Tour</a>
+</div>
+<div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#mission" onclick="closeMobile()">About</a>
-  <a href="#programs" onclick="closeMobile()">Programs</a>
-  
-  
-  <a href="#faq" onclick="closeMobile()">FAQ</a>
-  <a href="#admissions" onclick="closeMobile()">Book a Tour</a>
+<a href="#mission" onclick="closeMobile()">About</a>
+<a href="#programs" onclick="closeMobile()">Programs</a>
+
+<a href="#faq" onclick="closeMobile()">FAQ</a>
+<a href="#admissions" onclick="closeMobile()">Book a Tour</a>
 </div>
 <!-- HERO -->
 <section class="hero" style="padding-left:0;padding-right:0;padding-bottom:0; display:block;">
-  <div class="hero-left" style="max-width:100%; padding: 72px 10% 48px;">
-    <div class="hero-tag">⭐ Now Enrolling — All Campuses</div>
-    <h1 class="hero-title">
-      Welcome to<br>
-      <span class="highlight">International<br>Montessori Academy</span>
-    </h1>
-    <p class="hero-tagline">"Education From The Inside Out"</p>
-    <p class="hero-body">
-      Our mission is to provide a learning environment that is emotionally, physically, and spiritually safe — where children learn through doing, and every child is inspired to be all they were created to be.
-    </p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#admissions">Book a Tour</a>
-      <a class="btn-secondary" href="#mission">Our Mission</a>
-    </div>
-    <div class="hero-chips" style="margin-bottom: 40px;">
-      <div class="hero-chip"><div class="chip-dot" style="background:var(--burgundy)"></div> Kindergarten through 6th Grade</div>
-      <div class="hero-chip"><div class="chip-dot" style="background:var(--teal)"></div> 2 Campuses in Orange County</div>
-    </div>
-    <!-- LOCATION CARDS -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-      <div class="loc-card">
-        <div class="loc-card-header">
-          <div class="loc-header-icon">🏫</div>
-          <div>
-            <div class="loc-header-name">Newport Beach Elementary Montessori School</div>
-            <div class="loc-header-type">Elementary Montessori · Newport Beach, CA</div>
-          </div>
-        </div>
-        <div class="loc-card-body">
-          <div class="loc-row">
-            <div class="loc-row-icon">📍</div>
-            <div>
-              <div class="loc-row-label">Address</div>
-              <div class="loc-row-value">2591 Irvine Avenue<br>Costa Mesa, CA 92627</div>
-            </div>
-          </div>
-          <div class="loc-row">
-            <div class="loc-row-icon">📞</div>
-            <div>
-              <div class="loc-row-label">Phone</div>
-              <div class="loc-row-value"><a href="tel:9496319749">(949) 631-9749</a></div>
-            </div>
-          </div>
-          <div class="loc-row">
-            <div class="loc-row-icon">✉️</div>
-            <div>
-              <div class="loc-row-label">Email</div>
-              <div class="loc-row-value"><a href="mailto:costamesa@intmontessori.com">costamesa@intmontessori.com</a></div>
-            </div>
-          </div>
-          <a class="loc-map-btn" href="https://maps.google.com/?q=2591+Irvine+Avenue+Costa+Mesa+CA+92627" target="_blank">🗺️ Get Directions</a>
-        </div>
-      </div>
-      <div class="loc-card">
-        <div class="loc-card-header">
-          <div class="loc-header-icon">🏫</div>
-          <div>
-            <div class="loc-header-name">Costa Mesa Elementary School</div>
-            <div class="loc-header-type">Elementary Montessori · Costa Mesa, CA</div>
-          </div>
-        </div>
-        <div class="loc-card-body">
-          <div class="loc-row">
-            <div class="loc-row-icon">📍</div>
-            <div>
-              <div class="loc-row-label">Address</div>
-              <div class="loc-row-value">2950 McClintock Way<br>Costa Mesa, CA 92626</div>
-            </div>
-          </div>
-          <div class="loc-row">
-            <div class="loc-row-icon">📞</div>
-            <div>
-              <div class="loc-row-label">Phone</div>
-              <div class="loc-row-value"><a href="tel:7149660303">714.966.0303</a></div>
-            </div>
-          </div>
-          <div class="loc-row">
-            <div class="loc-row-icon">✉️</div>
-            <div>
-              <div class="loc-row-label">Email</div>
-              <div class="loc-row-value"><a href="mailto:costamesa@intmontessori.com">costamesa@intmontessori.com</a></div>
-            </div>
-          </div>
-          <a class="loc-map-btn" href="https://maps.google.com/?q=2950+McClintock+Way+Costa+Mesa+CA+92626" target="_blank">🗺️ Get Directions</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="hero-left" style="max-width:100%; padding: 72px 10% 48px;">
+<div class="hero-tag">⭐ Now Enrolling — All Campuses</div>
+<h1 class="hero-title">
+Welcome to<br>
+<span class="highlight">International<br>Montessori Academy</span>
+</h1>
+<p class="hero-tagline">"Education From The Inside Out"</p>
+<p class="hero-body">
+Our mission is to provide a learning environment that is emotionally, physically, and spiritually safe — where children learn through doing, and every child is inspired to be all they were created to be.
+</p>
+<div class="hero-actions">
+<a class="btn-primary" href="#admissions">Book a Tour</a>
+<a class="btn-secondary" href="#mission">Our Mission</a>
+</div>
+<div class="hero-chips" style="margin-bottom: 40px;">
+<div class="hero-chip"><div class="chip-dot" style="background:var(--burgundy)"></div> Kindergarten through 6th Grade</div>
+<div class="hero-chip"><div class="chip-dot" style="background:var(--teal)"></div> 2 Campuses in Orange County</div>
+</div>
+<!-- LOCATION CARDS -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+<div class="loc-card">
+<div class="loc-card-header">
+<div class="loc-header-icon">🏫</div>
+<div>
+<div class="loc-header-name">Newport Beach Elementary Montessori School</div>
+<div class="loc-header-type">Elementary Montessori · Newport Beach, CA</div>
+</div>
+</div>
+<div class="loc-card-body">
+<div class="loc-row">
+<div class="loc-row-icon">📍</div>
+<div>
+<div class="loc-row-label">Address</div>
+<div class="loc-row-value">2591 Irvine Avenue<br>Costa Mesa, CA 92627</div>
+</div>
+</div>
+<div class="loc-row">
+<div class="loc-row-icon">📞</div>
+<div>
+<div class="loc-row-label">Phone</div>
+<div class="loc-row-value"><a href="tel:9496319749">(949) 631-9749</a></div>
+</div>
+</div>
+<div class="loc-row">
+<div class="loc-row-icon">✉️</div>
+<div>
+<div class="loc-row-label">Email</div>
+<div class="loc-row-value"><a href="mailto:costamesa@intmontessori.com">costamesa@intmontessori.com</a></div>
+</div>
+</div>
+<a class="loc-map-btn" href="https://maps.google.com/?q=2591+Irvine+Avenue+Costa+Mesa+CA+92627" target="_blank">🗺️ Get Directions</a>
+</div>
+</div>
+<div class="loc-card">
+<div class="loc-card-header">
+<div class="loc-header-icon">🏫</div>
+<div>
+<div class="loc-header-name">Costa Mesa Elementary School</div>
+<div class="loc-header-type">Elementary Montessori · Costa Mesa, CA</div>
+</div>
+</div>
+<div class="loc-card-body">
+<div class="loc-row">
+<div class="loc-row-icon">📍</div>
+<div>
+<div class="loc-row-label">Address</div>
+<div class="loc-row-value">2950 McClintock Way<br>Costa Mesa, CA 92626</div>
+</div>
+</div>
+<div class="loc-row">
+<div class="loc-row-icon">📞</div>
+<div>
+<div class="loc-row-label">Phone</div>
+<div class="loc-row-value"><a href="tel:7149660303">714.966.0303</a></div>
+</div>
+</div>
+<div class="loc-row">
+<div class="loc-row-icon">✉️</div>
+<div>
+<div class="loc-row-label">Email</div>
+<div class="loc-row-value"><a href="mailto:costamesa@intmontessori.com">costamesa@intmontessori.com</a></div>
+</div>
+</div>
+<a class="loc-map-btn" href="https://maps.google.com/?q=2950+McClintock+Way+Costa+Mesa+CA+92626" target="_blank">🗺️ Get Directions</a>
+</div>
+</div>
+</div>
+</div>
 </section>
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item"><span>🏫</span> 2 Campuses in Orange County</div>
-  <div class="trust-div"></div>
-  <div class="trust-item"><span>📚</span> Kindergarten through 6th Grade</div>
-  <div class="trust-div"></div>
-  <div class="trust-item"><span>❤️</span> Orange County, California</div>
-  <div class="trust-div"></div>
-  <div class="trust-item"><span>🌍</span> Love, Harmony & Beauty</div>
-  <div class="trust-div"></div>
-  <div class="trust-item"><span>📘</span> Montessori Credentialed Teachers</div>
+<div class="trust-item"><span>🏫</span> 2 Campuses in Orange County</div>
+<div class="trust-div"></div>
+<div class="trust-item"><span>📚</span> Kindergarten through 6th Grade</div>
+<div class="trust-div"></div>
+<div class="trust-item"><span>❤️</span> Orange County, California</div>
+<div class="trust-div"></div>
+<div class="trust-item"><span>🌍</span> Love, Harmony & Beauty</div>
+<div class="trust-div"></div>
+<div class="trust-item"><span>📘</span> Montessori Credentialed Teachers</div>
 </div>
 <!-- MISSION / ABOUT -->
 <section class="mission" id="mission">
-  <div class="mission-inner">
-    <div class="mission-img-wrap">
-      <img class="mission-img-main" src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=700&q=80" alt="IMA teacher with students">
-      <div class="mission-badge">
-        <div class="b-num">K–6</div>
-        <div class="b-lbl">All Grade Levels<br>Offered</div>
-      </div>
-    </div>
-    <div class="mission-content">
-      <div class="section-tag">✨ Our Mission</div>
-      <h2 class="section-title">A learning environment built on <span class="accent">Love, Harmony & Beauty</span></h2>
-      <p>
-        Our mission is to provide an atmosphere of learning that is LOVING emotionally, and physically and spiritually SAFE — one that creates a living and unique Montessori environment where children learn through "doing."
-      </p>
-      <p>
-        We instill tolerance, thoughtfulness, consideration, and responsibility. We celebrate differences in others. The focus is on the heart of the child, while studying their strengths and passions. International Montessori Academy values diversity and seeks membership families of all racial, cultural, religious, and economic backgrounds.
-      </p>
-      <p>
-        International Montessori Academy was founded by Inayat Unissa Inayat-Khan Bergum, whose grandfather Hazrat Inayat Khan personally met with Dr. Maria Montessori. IMA carries a legacy of uniting children through Love, Harmony, and Beauty.
-      </p>
-      <div class="mission-pillars">
-        <div class="pillar">
-          <div class="pillar-icon">❤️</div>
-          <div class="pillar-title">Love</div>
-          <div class="pillar-text">Children are born with the natural tendency to love. Love is the platform from which children learn most effectively.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🕊️</div>
-          <div class="pillar-title">Harmony</div>
-          <div class="pillar-text">When there is understanding and knowledge, harmony is reached. We rise above differences together.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🌸</div>
-          <div class="pillar-title">Beauty</div>
-          <div class="pillar-text">We present moral teachings without doctrines and inspire children to have ideals and find beauty in learning.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🧠</div>
-          <div class="pillar-title">Follow the Child</div>
-          <div class="pillar-text">We create independent learners who attain their personal best at their own level, speed, and rhythm of development.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mission-inner">
+<div class="mission-img-wrap">
+<img class="mission-img-main" src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=700&q=80" alt="IMA teacher with students">
+<div class="mission-badge">
+<div class="b-num">K–6</div>
+<div class="b-lbl">All Grade Levels<br>Offered</div>
+</div>
+</div>
+<div class="mission-content">
+<div class="section-tag">✨ Our Mission</div>
+<h2 class="section-title">A learning environment built on <span class="accent">Love, Harmony & Beauty</span></h2>
+<p>
+Our mission is to provide an atmosphere of learning that is LOVING emotionally, and physically and spiritually SAFE — one that creates a living and unique Montessori environment where children learn through "doing."
+</p>
+<p>
+We instill tolerance, thoughtfulness, consideration, and responsibility. We celebrate differences in others. The focus is on the heart of the child, while studying their strengths and passions. International Montessori Academy values diversity and seeks membership families of all racial, cultural, religious, and economic backgrounds.
+</p>
+<p>
+International Montessori Academy was founded by Inayat Unissa Inayat-Khan Bergum, whose grandfather Hazrat Inayat Khan personally met with Dr. Maria Montessori. IMA carries a legacy of uniting children through Love, Harmony, and Beauty.
+</p>
+<div class="mission-pillars">
+<div class="pillar">
+<div class="pillar-icon">❤️</div>
+<div class="pillar-title">Love</div>
+<div class="pillar-text">Children are born with the natural tendency to love. Love is the platform from which children learn most effectively.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">🕊️</div>
+<div class="pillar-title">Harmony</div>
+<div class="pillar-text">When there is understanding and knowledge, harmony is reached. We rise above differences together.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">🌸</div>
+<div class="pillar-title">Beauty</div>
+<div class="pillar-text">We present moral teachings without doctrines and inspire children to have ideals and find beauty in learning.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">🧠</div>
+<div class="pillar-title">Follow the Child</div>
+<div class="pillar-text">We create independent learners who attain their personal best at their own level, speed, and rhythm of development.</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <!-- PROGRAMS -->
 <section class="programs" id="programs">
-  <div class="programs-inner">
-    <div class="section-tag">📚 Our Programs</div>
-    <h2 class="section-title">Programs for every <span class="accent">elementary grade</span></h2>
-    <p class="section-sub">
-      From Kindergarten through 6th grade, each program is rooted in the Montessori method — where students are free to discover, explore, and create in a prepared, enriched environment.
-    </p>
-    <div class="programs-grid">
-      <div class="prog-card" style="--accent-color: var(--blue);">
-        <div class="prog-card-img"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&q=80" alt="Elementary program"></div>
-        <div class="prog-card-body">
-          <div class="prog-tag tag-blue">🔬 Elementary</div>
-          <div class="prog-name">Elementary K–6</div>
-          <div class="prog-ages">Kindergarten through 6th Grade</div>
-          <div class="prog-desc">Elementary students engage in the Cosmic Curriculum — an integrated study of language arts, mathematics, science, history, and the arts. Research, collaboration, and independent inquiry are central to every school day.</div>
-        </div>
-      </div>
-      <div class="prog-card" style="--accent-color: var(--burgundy);">
-        <div class="prog-card-img"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&q=80" alt="Montessori materials"></div>
-        <div class="prog-card-body">
-          <div class="prog-tag tag-burgundy">🧩 Montessori Materials</div>
-          <div class="prog-name">Self-Directed Learning</div>
-          <div class="prog-ages">All grade levels</div>
-          <div class="prog-desc">Montessori materials are self-directed and self-correcting — activating in children a desire to learn more. Each material develops one perception at a time and places the responsibility for finding answers on the student.</div>
-        </div>
-      </div>
-      <div class="prog-card" style="--accent-color: #7B2FBE;">
-        <div class="prog-card-img"><img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?w=700&q=80" alt="Extracurricular activities"></div>
-        <div class="prog-card-body">
-          <div class="prog-tag tag-purple">🎭 Extracurricular</div>
-          <div class="prog-name">Enrichment Activities</div>
-          <div class="prog-ages">Varies by season</div>
-          <div class="prog-desc">Each campus offers a range of extracurricular activities throughout the year. Please visit your campus page for the full list of enrichment programs, seasonal activities, and after-school offerings available.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="programs-inner">
+<div class="section-tag st-teal">📚 Our Programs</div>
+<h2 class="section-title">Programs for every <span class="accent accent-teal">elementary grade</span></h2>
+<p class="section-sub">
+From Kindergarten through 6th grade, each program is rooted in the Montessori method — where students are free to discover, explore, and create in a prepared, enriched environment.
+</p>
+<div class="programs-grid">
+<div class="prog-card" style="--accent-color: var(--blue);">
+<div class="prog-card-img"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&q=80" alt="Elementary program"></div>
+<div class="prog-card-body">
+<div class="prog-tag tag-blue">🔬 Elementary</div>
+<div class="prog-name">Elementary K–6</div>
+<div class="prog-ages">Kindergarten through 6th Grade</div>
+<div class="prog-desc">Elementary students engage in the Cosmic Curriculum — an integrated study of language arts, mathematics, science, history, and the arts. Research, collaboration, and independent inquiry are central to every school day.</div>
+</div>
+</div>
+<div class="prog-card" style="--accent-color: var(--burgundy);">
+<div class="prog-card-img"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&q=80" alt="Montessori materials"></div>
+<div class="prog-card-body">
+<div class="prog-tag tag-burgundy">🧩 Montessori Materials</div>
+<div class="prog-name">Self-Directed Learning</div>
+<div class="prog-ages">All grade levels</div>
+<div class="prog-desc">Montessori materials are self-directed and self-correcting — activating in children a desire to learn more. Each material develops one perception at a time and places the responsibility for finding answers on the student.</div>
+</div>
+</div>
+<div class="prog-card" style="--accent-color: #7B2FBE;">
+<div class="prog-card-img"><img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?w=700&q=80" alt="Extracurricular activities"></div>
+<div class="prog-card-body">
+<div class="prog-tag tag-purple">🎭 Extracurricular</div>
+<div class="prog-name">Enrichment Activities</div>
+<div class="prog-ages">Varies by season</div>
+<div class="prog-desc">Each campus offers a range of extracurricular activities throughout the year. Please visit your campus page for the full list of enrichment programs, seasonal activities, and after-school offerings available.</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <!-- STATS -->
 <div class="stats-band">
-  <div class="stats-inner">
-    <div class="stat-card">
-      <div class="stat-icon">🏫</div>
-      <div class="stat-num">2</div>
-      <div class="stat-lbl">Campuses in Orange County</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">👩‍🏫</div>
-      <div class="stat-num">Small</div>
-      <div class="stat-lbl">Class Sizes</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">📅</div>
-      <div class="stat-num">Full</div>
-      <div class="stat-lbl">Day Programs Available</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🌍</div>
-      <div class="stat-num">K–6</div>
-      <div class="stat-lbl">All Grade Levels</div>
-    </div>
-  </div>
+<div class="stats-inner">
+<div class="stat-card">
+<div class="stat-icon">🏫</div>
+<div class="stat-num">2</div>
+<div class="stat-lbl">Campuses in Orange County</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">👩‍🏫</div>
+<div class="stat-num">Small</div>
+<div class="stat-lbl">Class Sizes</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">📅</div>
+<div class="stat-num">Full</div>
+<div class="stat-lbl">Day Programs Available</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">🌍</div>
+<div class="stat-num">K–6</div>
+<div class="stat-lbl">All Grade Levels</div>
+</div>
+</div>
 </div>
 <!-- ADMISSIONS + FORM -->
 <section class="admissions" id="admissions">
-  <div class="admissions-inner">
-    <div>
-      <div class="section-tag">🎒 Enrollment</div>
-      <h2 class="section-title">Begin your family's <span class="accent">IMA journey</span></h2>
-      <p class="section-sub">We welcome families of all racial, cultural, religious, and economic backgrounds. Our admissions process is designed to be an open and welcoming conversation.</p>
-      <div class="steps">
-        <div class="step-card">
-          <div class="step-badge">1</div>
-          <div><div class="step-title">Request Information or Book a Tour</div><div class="step-desc">Contact us or visit your nearest campus to meet the director and see our prepared environment in action.</div></div>
-        </div>
-        <div class="step-card">
-          <div class="step-badge">2</div>
-          <div><div class="step-title">Submit an Application</div><div class="step-desc">Complete a short application form. Our team will follow up within one business day to discuss availability and next steps.</div></div>
-        </div>
-        <div class="step-card">
-          <div class="step-badge">3</div>
-          <div><div class="step-title">Campus Visit & Orientation</div><div class="step-desc">Your child visits the classroom. We walk you through our curriculum, ratios, schedules, and tuition options.</div></div>
-        </div>
-        <div class="step-card">
-          <div class="step-badge">4</div>
-          <div><div class="step-title">Welcome to the IMA Family!</div><div class="step-desc">Enrollment confirmed. We provide a gentle transition plan so your child feels safe and excited from day one.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="booking-form" id="bookingFormWrapper">
-      <div class="form-head">
-        <div class="form-head-title">🗓️ Book a Tour</div>
-        <div class="form-head-sub">We'll confirm your visit within one business day.</div>
-      </div>
-      <div class="form-body">
-        <form action="https://formspree.io/f/xzdnzkjd" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Parent First Name</label>
-              <input type="text" name="First Name" placeholder="Jane" required>
-            </div>
-            <div class="form-group">
-              <label>Parent Last Name</label>
-              <input type="text" name="Last Name" placeholder="Smith" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="jane@example.com" required>
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" name="Phone" placeholder="(714) 555-0100">
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Preferred Campus</label>
-              <select name="Campus" required>
-                <option value="">Select a campus…</option>
-                <option>Newport Beach Elementary Montessori School</option>
-                <option>Costa Mesa Elementary K–6</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Child's Current Grade</label>
-              <select name="Grade">
-                <option value="">Select grade…</option>
-                <option>Kindergarten</option>
-                <option>1st Grade</option>
-                <option>2nd Grade</option>
-                <option>3rd Grade</option>
-                <option>4th Grade</option>
-                <option>5th Grade</option>
-                <option>6th Grade</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Questions or Notes (optional)</label>
-            <textarea name="Message" placeholder="Tell us a little about your child or any questions you have…"></textarea>
-          </div>
-          <button type="submit" class="form-submit">Book a Tour →</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<div class="admissions-inner">
+<div>
+<div class="section-tag st-green">🎒 Enrollment</div>
+<h2 class="section-title">Begin your family's <span class="accent accent-green">IMA journey</span></h2>
+<p class="section-sub">We welcome families of all racial, cultural, religious, and economic backgrounds. Our admissions process is designed to be an open and welcoming conversation.</p>
+<div class="steps">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div><div class="step-title">Request Information or Book a Tour</div><div class="step-desc">Contact us or visit your nearest campus to meet the director and see our prepared environment in action.</div></div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div><div class="step-title">Submit an Application</div><div class="step-desc">Complete a short application form. Our team will follow up within one business day to discuss availability and next steps.</div></div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div><div class="step-title">Campus Visit & Orientation</div><div class="step-desc">Your child visits the classroom. We walk you through our curriculum, ratios, schedules, and tuition options.</div></div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div><div class="step-title">Welcome to the IMA Family!</div><div class="step-desc">Enrollment confirmed. We provide a gentle transition plan so your child feels safe and excited from day one.</div></div>
+</div>
+</div>
+</div>
+<div class="booking-form" id="bookingFormWrapper">
+<div class="form-head">
+<div class="form-head-title">🗓️ Book a Tour</div>
+<div class="form-head-sub">We'll confirm your visit within one business day.</div>
+</div>
+<div class="form-body">
+<form action="https://formspree.io/f/xzdnzkjd" method="POST">
+<div class="form-row">
+<div class="form-group">
+<label>Parent First Name</label>
+<input type="text" name="First Name" placeholder="Jane" required>
+</div>
+<div class="form-group">
+<label>Parent Last Name</label>
+<input type="text" name="Last Name" placeholder="Smith" required>
+</div>
+</div>
+<div class="form-group">
+<label>Email Address</label>
+<input type="email" name="email" placeholder="jane@example.com" required>
+</div>
+<div class="form-group">
+<label>Phone Number</label>
+<input type="tel" name="Phone" placeholder="(714) 555-0100">
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Preferred Campus</label>
+<select name="Campus" required>
+<option value="">Select a campus…</option>
+<option>Newport Beach Elementary Montessori School</option>
+<option>Costa Mesa Elementary K–6</option>
+</select>
+</div>
+<div class="form-group">
+<label>Child's Current Grade</label>
+<select name="Grade">
+<option value="">Select grade…</option>
+<option>Kindergarten</option>
+<option>1st Grade</option>
+<option>2nd Grade</option>
+<option>3rd Grade</option>
+<option>4th Grade</option>
+<option>5th Grade</option>
+<option>6th Grade</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label>Questions or Notes (optional)</label>
+<textarea name="Message" placeholder="Tell us a little about your child or any questions you have…"></textarea>
+</div>
+<button type="submit" class="form-submit">Book a Tour →</button>
+</form>
+</div>
+</div>
+</div>
 </section>
 <!-- FAQ -->
 <section class="faq" id="faq">
-  <div class="faq-inner">
-    <div class="section-tag">❓ Common Questions</div>
-    <h2 class="section-title">Things families <span class="accent">ask us</span></h2>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">What are your student-to-teacher ratios?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">Our small class sizes ensure every student receives individualized attention throughout their day — a hallmark of the Montessori approach.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">What is the Montessori method?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">Developed in the 1900s by Dr. Maria Montessori — a scientist, mathematician, and physician — the Montessori method is based on the premise that each child is born with a drive to develop themselves. A child learns best through physical activity and the senses, given freedom to discover, explore, and create in an enriched environment with supportive encouragement.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">What are Montessori materials and why are they different?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">Montessori materials are self-directed and self-correcting — they activate a desire to learn more because they engage children both physically and mentally. Each material develops one perception at a time and places the responsibility for finding answers on the child, building independence and self-motivation rather than dependency on the teacher.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">Who are your teachers?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">All lead teachers hold Montessori credentials and are highly qualified, experienced, innovative, and creative. Our teachers emphasize moral instruction, tolerance, and kindness. They are supported by ECE-qualified teacher's assistants at every campus.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">Do you accept families of different backgrounds and faiths?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">Absolutely. International Montessori Academy values diversity and actively seeks membership families of all racial, cultural, religious, and economic backgrounds. Our founding philosophy of Love, Harmony, and Beauty was built on celebrating differences — not minimizing them.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">What extracurricular activities are available?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">Extracurricular activities vary by campus and by season. Please visit your specific campus page on our website, or contact the campus director, to learn which activities and enrichment programs are currently being offered.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">How do I find tuition and fees?<span class="faq-icon">+</span></div>
-      <div class="faq-answer">Tuition varies by campus and program level. Please visit our Tuition & Fees page or contact your preferred campus directly. We encourage all interested families to reach out regardless of financial situation — we are committed to making Montessori education accessible.</div>
-    </div>
-  </div>
+<div class="faq-inner">
+<div class="section-tag st-yellow">❓ Common Questions</div>
+<h2 class="section-title">Things families <span class="accent accent-yellow">ask us</span></h2>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">What are your student-to-teacher ratios?<span class="faq-icon">+</span></div>
+<div class="faq-answer">Our small class sizes ensure every student receives individualized attention throughout their day — a hallmark of the Montessori approach.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">What is the Montessori method?<span class="faq-icon">+</span></div>
+<div class="faq-answer">Developed in the 1900s by Dr. Maria Montessori — a scientist, mathematician, and physician — the Montessori method is based on the premise that each child is born with a drive to develop themselves. A child learns best through physical activity and the senses, given freedom to discover, explore, and create in an enriched environment with supportive encouragement.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">What are Montessori materials and why are they different?<span class="faq-icon">+</span></div>
+<div class="faq-answer">Montessori materials are self-directed and self-correcting — they activate a desire to learn more because they engage children both physically and mentally. Each material develops one perception at a time and places the responsibility for finding answers on the child, building independence and self-motivation rather than dependency on the teacher.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">Who are your teachers?<span class="faq-icon">+</span></div>
+<div class="faq-answer">All lead teachers hold Montessori credentials and are highly qualified, experienced, innovative, and creative. Our teachers emphasize moral instruction, tolerance, and kindness. They are supported by ECE-qualified teacher's assistants at every campus.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">Do you accept families of different backgrounds and faiths?<span class="faq-icon">+</span></div>
+<div class="faq-answer">Absolutely. International Montessori Academy values diversity and actively seeks membership families of all racial, cultural, religious, and economic backgrounds. Our founding philosophy of Love, Harmony, and Beauty was built on celebrating differences — not minimizing them.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">What extracurricular activities are available?<span class="faq-icon">+</span></div>
+<div class="faq-answer">Extracurricular activities vary by campus and by season. Please visit your specific campus page on our website, or contact the campus director, to learn which activities and enrichment programs are currently being offered.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">How do I find tuition and fees?<span class="faq-icon">+</span></div>
+<div class="faq-answer">Tuition varies by campus and program level. Please visit our Tuition & Fees page or contact your preferred campus directly. We encourage all interested families to reach out regardless of financial situation — we are committed to making Montessori education accessible.</div>
+</div>
+</div>
 </section>
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div>
-      <img src="logo.png" alt="International Montessori Academies USA" style="height: 56px; width: auto; margin-bottom: 14px; filter: brightness(0) invert(1); opacity: 0.85;">
-      <div class="footer-brand-name">International Montessori Academy of USA</div>
-      <div class="footer-brand-sub">ICMA · Costa Mesa, CA</div>
-      <div class="footer-tagline">"Education From The Inside Out"<br><br>Providing a loving, safe, and purposeful<br>Montessori environment in Costa Mesa, CA.</div>
-    </div>
-    <div>
-      <p class="footer-col-title">Navigate</p>
-      <div class="footer-links">
-        <a href="#mission">About Us</a>
-        <a href="#mission">Our Mission</a>
-        <a href="#programs">Why Montessori?</a>
-        <a href="https://www.intmontessori.com/tuition-fees" target="_blank">Tuition & Fees</a>
-        <a href="#admissions">Enrollment</a>
-        <a href="https://www.intmontessori.com/careers" target="_blank">Careers</a>
-        <a href="https://www.intmontessori.com/contact-us" target="_blank">Contact</a>
-      </div>
-    </div>
-    <div>
-      <p class="footer-col-title">Our Schools</p>
-      <div class="footer-links">
-        <a href="https://www.intmontessori.com/newport-beach-elementary-montessori-school" target="_blank">Newport Beach Elementary</a>
-        <a href="https://www.intmontessori.com/mesa-verde-k-8-montessori-school" target="_blank">Costa Mesa Elementary K–6</a>
-      </div>
-    </div>
-    <div>
-      <p class="footer-col-title">Connect</p>
-      <div class="footer-links">
-        <a href="#admissions">Book a Tour</a>
-        <a href="https://www.intmontessori.com/careers" target="_blank">Careers & Positions</a>
-        <a href="https://www.intmontessori.com/contact-us" target="_blank">Request Information</a>
-        <a href="http://www.facebook.com/InternationalChristianMontessoriAcademyOfCostaMesa/" target="_blank">Facebook</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2014–2026 International Montessori Academies of USA. All rights reserved.</span>
-    <span>Privacy Policy · Sitemap</span>
-  </div>
+<div class="footer-inner">
+<div>
+<img src="logo.png" alt="International Montessori Academies USA" style="height: 56px; width: auto; margin-bottom: 14px; filter: brightness(0) invert(1); opacity: 0.85;">
+<div class="footer-brand-name">International Montessori Academy of USA</div>
+<div class="footer-brand-sub">ICMA · Costa Mesa, CA</div>
+<div class="footer-tagline">"Education From The Inside Out"<br><br>Providing a loving, safe, and purposeful<br>Montessori environment in Costa Mesa, CA.</div>
+</div>
+<div>
+<p class="footer-col-title">Navigate</p>
+<div class="footer-links">
+<a href="#mission">About Us</a>
+<a href="#mission">Our Mission</a>
+<a href="#programs">Why Montessori?</a>
+<a href="https://www.intmontessori.com/tuition-fees" target="_blank">Tuition & Fees</a>
+<a href="#admissions">Enrollment</a>
+<a href="https://www.intmontessori.com/careers" target="_blank">Careers</a>
+<a href="https://www.intmontessori.com/contact-us" target="_blank">Contact</a>
+</div>
+</div>
+<div>
+<p class="footer-col-title">Our Schools</p>
+<div class="footer-links">
+<a href="https://www.intmontessori.com/newport-beach-elementary-montessori-school" target="_blank">Newport Beach Elementary</a>
+<a href="https://www.intmontessori.com/mesa-verde-k-8-montessori-school" target="_blank">Costa Mesa Elementary K–6</a>
+</div>
+</div>
+<div>
+<p class="footer-col-title">Connect</p>
+<div class="footer-links">
+<a href="#admissions">Book a Tour</a>
+<a href="https://www.intmontessori.com/careers" target="_blank">Careers & Positions</a>
+<a href="https://www.intmontessori.com/contact-us" target="_blank">Request Information</a>
+<a href="http://www.facebook.com/InternationalChristianMontessoriAcademyOfCostaMesa/" target="_blank">Facebook</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2014–2026 International Montessori Academies of USA. All rights reserved.</span>
+<span>Privacy Policy · Sitemap</span>
+</div>
 </footer>
 <script>
-  document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  });
-  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
-  function toggleFaq(el) {
-    const item = el.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+document.getElementById('hamburger').addEventListener('click', () => {
+document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+function toggleFaq(el) {
+const item = el.parentElement;
+const isOpen = item.classList.contains('open');
+document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+if (!isOpen) item.classList.add('open');
+}
 </script>
 </body>
 </html>
